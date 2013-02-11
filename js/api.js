@@ -1,6 +1,6 @@
 var DCaseAPI = new Object();
 
-DCaseAPI.cgi = "cgi/interface.cgi";
+DCaseAPI.cgi = "../DCaseCloud/webAPI/cgi/interface.cgi";
 
 DCaseAPI.call = function(method, params) {
 	var cmd = {

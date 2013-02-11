@@ -12,7 +12,7 @@ var DNode = function(id, name, type, text) {
 }
 
 DNode.prototype.addChild = function(node) {
-	if(node.type != "Context") {
+	if(node.type != "Context" || node.type != "DContext") {
 		this.children.push(node);
 	} else {
 		this.context = node;
@@ -39,7 +39,7 @@ DNode.prototype.isUndevelop = function() {
 
 DNode.getTypes = function() {
 	return [
-			"Goal", "Context", "Strategy", "Evidence", "Monitor", "DScript"
+			"Goal", "Context", "Strategy", "Evidence", "Monitor", "DScript", "DContext"
 	];
 }
 
@@ -48,11 +48,13 @@ DNode.getTypes = function() {
 var DSCRIPT_PREF = "D-Script:";
 var DSCRIPT_PREF_CONTEXT = "D-Script.Name:";
 DNode.prototype.isDScript = function() {
-	return this.type === "Evidence" && this.text.indexOf(DSCRIPT_PREF) == 0;
+	//return this.type === "Evidence" && this.text.indexOf(DSCRIPT_PREF) == 0;
+	return this.type === "DScript";
 }
 
 DNode.prototype.getDScriptNameInEvidence = function() {
-	return this.text.substr(DSCRIPT_PREF.length);
+	//return this.text.substr(DSCRIPT_PREF.length);
+	return this.text;
 }
 
 DNode.prototype.getDScriptNameInContext = function() {
@@ -86,6 +88,14 @@ function createNodeFromJson(json) {
 			var child = l.children[i];
 			var n = nodes[child.node_id];
 			n.name = n.type.charAt(0) + n.node_id;
+			if(n.description.indexOf("D-Script:") == 0) {
+				n.description = n.description.slice(9);
+				n.type = "DScript";
+			}
+			else if(n.type == "Context" && n.properties.hasOwnProperty("D-Script")) {
+				n.type = "DContext";
+				n.description = n.properties["D-Script"];
+			}
 			var newNode = new DNode(n.node_id, n.name, n.type,
 					n.type != "Context" ? n.description : JSON.stringify(n.properties));
 			newNode.isEvidence = n.isEvidence;
