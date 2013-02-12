@@ -261,22 +261,39 @@ DCaseViewer.prototype.showDScriptExecuteWindow = function(scriptName) {
 		argument_id: self.opts.id
 	});
 	t.append($("<input></input>").attr({
-		type: "button", value: "実行",
-		id: scriptName
+		type: "button", value: "実行"
 	}).click(function() {
-		var r = DCaseAPI.call("run", { name: this.id });
+		var desc;
+		function g(n) {
+			n.forEachNode(function(e) {
+				console.log(e);
+				if(e.node.type == "DScript") {
+					desc = e.node.text;
+				}
+				g(e);
+			});
+		};
+		g(v.rootview);
+		var r = DCaseAPI.call("run", { name: desc });
 		function f(n) {
 			n.forEachNode(function(e) {
 				console.log(e);
 				if(e.node.type == "DScript") {
-					e.node.isEvidence = true;
+					var b = r.stdout.indexOf("false") >= 0;
+					if(b) {
+						e.node.isEvidence = false;
+						e.node.addChild(new DNode(-1, "R", "Rebuttal", "desc"));
+					} else {
+						e.node.isEvidence = true;
+					}
 				}
 				f(e);
 			});
 		}
 		f(v.rootview);
-		v.repaintAll(1);
+		v.setModel(v.model);
 		alert(r.stdout);
+		//v.repaintAll(1);
 	}));
 	t.append($("<input></input>").attr({
 		type: "button", value: "キャンセル"
