@@ -1,8 +1,8 @@
 //-------------------------------------
 // const
 var ANIME_MSEC = 250;
-var X_MARGIN = 30;
-var Y_MARGIN = 100;
+var X_MARGIN = 20;
+var Y_MARGIN = 30;
 var SCALE_MIN = 0.1;
 var SCALE_MAX = 6.0;
 var SVG_NS = "http://www.w3.org/2000/svg";
