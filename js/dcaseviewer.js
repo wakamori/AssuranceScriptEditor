@@ -235,10 +235,22 @@ DCaseViewer.prototype.showDScriptExecuteWindow = function(scriptName) {
 		argument_id: self.opts.id
 	});
 	t.append($("<input></input>").attr({
-		type: "button", value: "実行"
+		type: "button", value: "実行",
+		id: scriptName
 	}).click(function() {
-		var r = DCaseAPI.call("run", {});
-		alert(r);
+		var r = DCaseAPI.call("run", { name: this.id });
+		function f(n) {
+			n.forEachNode(function(e) {
+				console.log(e);
+				if(e.node.type == "DScript") {
+					e.node.isEvidence = true;
+				}
+				f(e);
+			});
+		}
+		f(v.rootview);
+		v.repaintAll(1);
+		alert(r.stdout);
 	}));
 	t.append($("<input></input>").attr({
 		type: "button", value: "キャンセル"

@@ -43,8 +43,8 @@ var DNodeView = function(viewer, node) {
 
 	this.divText = $("<div></div>")
 		.addClass("node-text")
-		.html(node.text)
-		.editInPlace(viewer.editInPlaceOpts);
+		.html(node.text);
+		//.editInPlace(viewer.editInPlaceOpts);
 	this.div.append(this.divText);
 
 	this.divNodes = $("<div></div>").addClass("node-closednodes");
