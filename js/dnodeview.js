@@ -179,23 +179,24 @@ DNodeView.prototype.initSvg = function(type) {
 		$(o2).attr({ stroke: "gray", fill:"gray" });
 		o.appendChild(o1);
 		o.appendChild(o2);
-		var n = 20;
 		o.setBounds = function(a, x, y, w, h) {
+			var n = 20 * root.scale;
 			a.moves(o1, {
-				rx: n * root.scale,
-				ry: n * root.scale,
+				rx: n,
+				ry: n,
 				x : x,
 				y : y,
 				width : w,
 				height: h
 			});
 			a.movePolygon(o2, [
-				{ x: x+w*5/8, y:y-h/4 },
-				{ x: x+w*5/8, y:y+h/4 },
-				{ x: x+w*7/8, y:y },
+				{ x: x+w*5/8, y:y-n },
+				{ x: x+w*5/8, y:y+n },
+				{ x: x+w*5/8+n*2, y:y },
 			]);
+			o.offset = { x: n/2, y: n/2 };
 		}
-		o.offset = { x: n/2, y: n/2 };
+		o.offset = { x: 1, y: 1 };
 	} else if(type == "Strategy") {
 		o = root.createSvg("polygon");
 		o.setBounds = function(a, x, y, w, h) {
@@ -234,10 +235,11 @@ DNodeView.prototype.initSvg = function(type) {
 				rx: w/2,
 				ry: h/2,
 			});
+			var n = 20 * root.scale;
 			a.movePolygon(o2, [
-				{ x: x+w*5/8, y:y-h/4 },
-				{ x: x+w*5/8, y:y+h/4 },
-				{ x: x+w*7/8, y:y },
+				{ x: x+w*5/8, y:y-n },
+				{ x: x+w*5/8, y:y+n },
+				{ x: x+w*5/8+n*2, y:y },
 			]);
 			o.offset = { x: w/6/root.scale, y: h/6/root.scale };
 		}
@@ -288,12 +290,17 @@ DNodeView.prototype.addChild = function(view) {
 		stroke: "#404040",
 		x1: 0, y1: 0, x2: 0, y2: 0
 	});
-	if(view.node.type == "Context" || view.node.type == "Rebuttal" || view.node.type == "DScriptContext") {
+	switch(view.node.type) {
+	case "Context":
+	case "Rebuttal":
+	case "DScriptContext":
 		this.contextLine = l;
 		this.context = view;
-	} else {
+		break;
+	default:
 		this.lines.push(l);
 		this.children.push(view);
+		break;
 	}
 	this.divNodesText = (this.lines.length + (this.contextLine!=null?1:0))
 			 + " nodes...";
