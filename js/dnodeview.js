@@ -143,27 +143,6 @@ DNodeView.prototype.initSvg = function(type) {
 			return { w: w + n*2, h: h + n*2 };
 		}
 		o.offset = { x: n, y: n };
-	} else if(type == "DContext") {
-		o = root.createSvg("rect");
-		var o2 = root.createSvg("polygon");
-		$(o2).attr({ stroke: "gray", fill:"gray" });
-		var n = 20;
-		o.setBounds = function(a, x, y, w, h) {
-			a.moves(this, {
-				rx: n * root.scale,
-				ry: n * root.scale,
-				x : x,
-				y : y,
-				width : w,
-				height: h
-			});
-			a.movePolygon(o2, [
-				{ x: x+w*5/8, y:y-h/4 },
-				{ x: x+w*5/8, y:y+h/4 },
-				{ x: x+w*7/8, y:y },
-			]);
-		}
-		o.offset = { x: n/2, y: n/2 };
 	} else if(type == "Context") {
 		o = root.createSvg("rect");
 		var n = 20;
