@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>D-CASE VIEWER</title>
 <link rel="stylesheet" type="text/css" href="lib/codemirror.css"/>
-<link rel="stylesheet" type="text/css" href="lib/jquery.toolbars.css"/>
 <link rel="stylesheet" type="text/css" href="lib/jquery.svg.css"/>
 <link rel="stylesheet" type="text/css" href="lib/bootstrap.icons.css"/>
 <link rel="stylesheet" type="text/css" href="css/dcase-node.css"/>
@@ -28,7 +27,6 @@ body {
 <script type="text/javascript" src="lib/jquery.mousewheel.min.js"></script>
 <script type="text/javascript" src="lib/jquery.svg.min.js"></script>
 <script type="text/javascript" src="lib/jquery.svganim.min.js"></script>
-<script type="text/javascript" src="lib/jquery.toolbar.min.js"></script>
 <script type="text/javascript" src="lib/codemirror.js"></script>
 <script type="text/javascript" src="lib/jquery.editinplace.js"></script>
 <script type="text/javascript" src="js/dcaseviewer.js"></script>
@@ -72,10 +70,25 @@ window.addEventListener("load",function() {
 		menu.actRemoveSelectedNode();
 	});
 	$(".tool-left").click(function() {
-		menu.actPrevVersion();
+		viewer.prevVersion(viewer.getSelectedNode());
 	});
 	$(".tool-right").click(function() {
-		menu.actNextVersion();
+		viewer.nextVersion(viewer.getSelectedNode());
+	});
+	$(".tool-up").click(function() {
+		viewer.actExpandBranch(viewer.getSelectedNode(), false);
+		$(".tool-up").css("display", "none");
+		$(".tool-down").css("display", "inline");
+	});
+	$(".tool-down").click(function() {
+		viewer.actExpandBranch(viewer.getSelectedNode(), true);
+		$(".tool-up").css("display", "inline");
+		$(".tool-down").css("display", "none");
+	});
+
+	$(".tool-play").click(function() {
+		var v = viewer.getSelectedNode();
+		viewer.showDScriptExecuteWindow(v.node.getDScriptNameInEvidence());
 	});
 
 	// hide url bar for ipod touch
@@ -89,12 +102,14 @@ window.addEventListener("load",function() {
 
 <div id="viewer"></div>
 
-<div id="toolbar-node-edit" style="display: none;">
+<div id="toolbar" style="display: none;">
 	<a href="#" class="tool-new"><i class="icon-plus"></i></a>
-	<a href="#" class="tool-edit"><i class="icon-edit"></i></a>
 	<a href="#" class="tool-remove"><i class="icon-remove"></i></a>
 	<a href="#" class="tool-left"><i class="icon-arrow-left"></i></a>
 	<a href="#" class="tool-right"><i class="icon-arrow-right"></i></a>
+	<a href="#" class="tool-play"><i class="icon-play"></i></a>
+	<a href="#" class="tool-up"><i class="icon-circle-arrow-up"></i></a>
+	<a href="#" class="tool-down"><i class="icon-circle-arrow-down"></i></a>
 </div>
 
 <div id="menu">
