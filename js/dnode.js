@@ -97,16 +97,15 @@ function createNodeFromJson(json) {
 			var child = l.children[i];
 			var n = nodes[child.node_id];
 			n.name = n.type.charAt(0) + n.node_id;
+			var desc = n.description ? n.description : contextParams(n.properties);
 			if(n.description.indexOf("D-Script:") == 0) {
-				n.description = n.description.slice(9);
+				desc = n.description.slice(9);
 				n.type = "DScript";
 			}
 			else if(n.type == "Context" && n.properties.hasOwnProperty("D-Script")) {
 				n.type = "DScriptContext";
-				n.description = n.properties["D-Script"];
+				desc = n.properties["D-Script"];
 			}
-			var newNode = new DNode(n.node_id, n.name, n.type,
-					n.type != "Context" ? n.description : JSON.stringify(n.properties));
 			var newNode = new DNode(n.node_id, n.name, n.type, desc);
 			newNode.isEvidence = n.isEvidence;
 			node.addChild(newNode);
