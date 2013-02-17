@@ -292,8 +292,9 @@ DCaseViewer.prototype.showDScriptExecuteWindow = function(scriptName) {
 				if(e.node.type == "DScript") {
 					var b = r.stdout.indexOf("false") >= 0;
 					if(b) {
+						r.stdout = r.stdout.replace("true", "false");
 						e.node.isEvidence = false;
-						e.node.addChild(new DNode(-1, "R", "Rebuttal", "desc"));
+						e.node.addChild(new DNode(-1, "R", "Rebuttal", r.stdout));
 					} else {
 						e.node.isEvidence = true;
 					}
