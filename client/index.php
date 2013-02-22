@@ -132,16 +132,16 @@ window.addEventListener("load",function() {
 		<i class="icon-download"></i>
 	</div>
 	<div id="menu-export" class="menu-box">
-		<input id="menu-export-json" type="button" value="export json"></input>
-		<input id="menu-export-png"  type="button" value="export png"></input>
-		<input id="menu-export-dscript"  type="button" value="export dscript"></input>
+		<p><input id="menu-export-json"    class="btn" type="button" value="Export Json"   ></input></p>
+		<p><input id="menu-export-png"     class="btn" type="button" value="Export PNG"    ></input></p>
+		<p><input id="menu-export-dscript" class="btn" type="button" value="Export DScript"></input></p>
 	</div>
 
 	<div id="menu-tool-i" class="menu-i" style="left: 80px;">
 		<i class="icon-upload"></i>
 	</div>
 	<div id="menu-tool" class="menu-box">
-		<input id="menu-tool-commit" type="button" value="commit"></input>
+		<input id="menu-tool-commit" type="button" class="btn" value="Commit"></input>
 	</div>
 
 
@@ -162,7 +162,7 @@ window.addEventListener("load",function() {
 ?>
 		<p>descriptions</p>
 		<textarea id="argument_description" cols=20 rows=4>Enter new Argument descriptions.  </textarea>
-		<button id="menu-create-argument">Create</button>
+		<button id="menu-create-argument" class="btn">Create</button>
 	</div>
 
 	<div id="menu-tool-i" class="menu-i-undeveloped" style="left: 160px;">
