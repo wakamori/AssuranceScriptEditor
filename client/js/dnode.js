@@ -125,10 +125,13 @@ function createNodeFromJson(json) {
         }
     }
     var n = nodes[json.Tree.TopGoalId];
+    if (n == undefined) {
+        throw "error: no top goal";
+    }
     var topNode = new DNode(json.Tree.TopGoalId, 'TopGoal', n.NodeType, n.Description);
     createChildren(topNode, n);
     return topNode;
-}
+ }
 
 function createBinNode(n) {
     if (n > 0) {

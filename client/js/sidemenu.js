@@ -132,7 +132,18 @@ var SideMenu = (function(root, viewer) {
         $field.empty();
         for (var i = 0; i < result.NodeIdList.length; i++) {
             var r = DCaseAPI.call('getNode', {NodeId: result.NodeIdList[i]});
-            showResult($field, r);
+            // vvv FIXME it is adhock
+            var res1 = DCaseAPI.call("getNodeTree", {BelongedArgumentId: r.Node.BelongedArgumentId});
+            try {
+                var node = createNodeFromJson(res1);
+                showResult($field, r);
+            } catch(e) {
+                console.log(e + ': ' + r.Node.Description);
+            }
+            finally {
+            }
+            // ^^^ FIXME it is adhock
+
         }
         function showResult($field, result) {
             $('<ul>')
