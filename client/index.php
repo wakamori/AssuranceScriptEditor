@@ -123,7 +123,7 @@ window.addEventListener("load",function() {
 		<i class="icon-search"></i>
 	</div>
 	<div id="menu-search" class="menu-box">
-		<p>Search D-Case</p>
+		<p>D-Caseを探す</p>
 		<input type="text"></input>
 		<ul style="list-style-type: none; overflow: auto;"></ul>
 	</div>
