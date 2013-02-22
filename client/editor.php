@@ -105,6 +105,7 @@ window.addEventListener("load",function() {
 
 <img id="ase_logo" src="img/assuranceDS.png">
 <div id="viewer"></div>
+<div id="timeline-control">&darr;</div>
 <div id="timeline"></div>
 
 <div id="toolbar" style="display: none;">
@@ -171,17 +172,25 @@ window.addEventListener("load",function() {
 	</div>
 	<div id="menu-color" class="menu-box">
 		<form action="#" method="post">
-			<fieldset>
-				<div class="controlset">
-					<label for="color-goal">Goal</label>
-					<input class="colorpicker" id="color-goal" type="text" name="color-goal" value="#333399" /></div>
-				<div class="controlset">
-					<label for="color-strategy">Strategy</label>
-					<input class="colorpicker" id="color-strategy" type="text" name="color-strategy" value="#FF0000" /></div>
-				<div class="controlset">
-					<label for="color-context">Context</label>
-					<input class="colorpicker" id="color-context" type="text" name="color-context" value="#99cc00" /></div>
-			</fieldset>
+			<div class="controlset">
+				<fieldset>
+					<legend>Default</legend>
+					<input class="colorpicker" id="color-goal" type="text"
+					name="color-goal" value="#000000" />
+					<input class="colorpicker" id="color-strategy" type="text"
+					name="color-strategy" value="#222222" />
+					<input class="colorpicker" id="color-context" type="text"
+					name="color-context" value="#444444" />
+					<input class="colorpicker" id="color-evidence" type="text"
+					name="color-evidence" value="#666666" />
+					<input class="colorpicker" id="color-subject" type="text"
+					name="color-subject" value="#888888" />
+					<input class="colorpicker" id="color-solution" type="text"
+					name="color-solution" value="#AAAAAA" />
+					<input class="colorpicker" id="color-rebuttal" type="text"
+					name="color-rebuttal" value="#CCCCCC" />
+				</fieldset>
+			</div>
 		</form>
 <?php
 	if (empty($_SESSION['user'])) {
