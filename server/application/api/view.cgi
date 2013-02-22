@@ -182,11 +182,11 @@ class DScriptExporter extends Exporter {
         }
         else if(IsGoal(root)) {
             indent = EmitIndent(level);
-            stdout.print(indent + "assure " + root.get("Description").replace("\n", "").replace("\r", "") + " {\n");
+            stdout.print(indent + "assure " + root.getString("Description").replace("\n", "").replace("\r", "") + " {\n");
         }
         else if(IsStrategy(root)) {
             indent = EmitIndent(level);
-            stdout.print(indent + "strategy " + root.get("Description").replace("\n", "").replace("\r", "") + " {\n");
+            stdout.print(indent + "strategy " + root.getString("Description").replace("\n", "").replace("\r", "") + " {\n");
         }
         else if(IsContext(root)) {
             return;
