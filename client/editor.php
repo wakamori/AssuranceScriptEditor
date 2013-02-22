@@ -105,7 +105,7 @@ window.addEventListener("load",function() {
 
 <img id="ase_logo" src="img/assuranceDS.png">
 <div id="viewer"></div>
-<div id="timeline-control">$B"'(B</div>
+<div id="timeline-control">▼</div>
 <div id="timeline"></div>
 
 <div id="toolbar" style="display: none;">
