@@ -172,7 +172,9 @@ function CreateGoal(Viewer, root) {
         return { w: w + n * 2, h: h + n * 2 };
     };
     o.offset = { x: n, y: n };
-    $(o).attr('class', 'dnode dnode-goal');
+    $(o).attr('class', 'dnode dnode-goal').css({
+        fill: $('input.color-goal').val()
+    });
     return o;
 }
 function CreateContext(Viewer, root) {
@@ -193,7 +195,9 @@ function CreateContext(Viewer, root) {
     };
     o.offset = { x: n / 2, y: n / 2 };
 
-    $(o).attr('class', 'dnode dnode-context');
+    $(o).attr('class', 'dnode dnode-context').css({
+        fill: $('input.color-context').val()
+    });
     return o;
 }
 function CreateStrategy(Viewer, root) {
@@ -211,7 +215,9 @@ function CreateStrategy(Viewer, root) {
         return { w: w + 20 * 2, h: h + 10 * 2 };
     };
     o.offset = { x: 25, y: 10 };
-    $(o).attr('class', 'dnode dnode-strategy');
+    $(o).attr('class', 'dnode dnode-strategy').css({
+        fill: $('input.color-strategy').val()
+    });
     return o;
 }
 function CreateSubject(Viewer, root) {
@@ -241,8 +247,12 @@ function CreateSubject(Viewer, root) {
         return { w: w + 20, h: h + 20 };
     };
     o.offset = { x: 1, y: 1 };
-    $(o).attr('class', 'dnode dnode-subject');
-    $(o1).attr('class', 'dnode dnode-subject');
+    $(o).attr('class', 'dnode dnode-subject').css({
+        fill: $('input.color-subject').val()
+    });
+    $(o1).attr('class', 'dnode dnode-subject').css({
+        fill: $('input.color-subject').val()
+    });
     $(o2).attr('class', 'dnode dnode-subject');
     return o;
 }
@@ -272,8 +282,12 @@ function CreateSolution(Viewer, root) {
     };
     o.offset = { x: 200 / 6, y: 200 / 6 };
 
-    $(o).attr('class', 'dnode dnode-solution');
-    $(o1).attr('class', 'dnode dnode-solution');
+    $(o).attr('class', 'dnode dnode-solution').css({
+        fill: $('input.color-solution').val()
+    });
+    $(o1).attr('class', 'dnode dnode-solution').css({
+        fill: $('input.color-solution').val()
+    });
     $(o2).attr('class', 'dnode dnode-solution');
     return o;
 }
@@ -293,7 +307,9 @@ function CreateEvidence(Viewer, root) {
         return { w: w * 8 / 6, h: h * 8 / 6 };
     };
     o.offset = { x: 0, y: 0 };
-    $(o).attr('class', 'dnode dnode-evidence');
+    $(o).attr('class', 'dnode dnode-evidence').css({
+        fill: $('input.color-evidence').val()
+    });
     return o;
 }
 
@@ -312,7 +328,9 @@ function CreateRebuttal(Viewer, root) {
         return { w: w * 8 / 6, h: h * 8 / 6 };
     };
     o.offset = { x: 0, y: 0 };
-    $(o).attr('class', 'dnode dnode-rebuttal');
+    $(o).attr('class', 'dnode dnode-rebuttal').css({
+        fill: $('input.color-rebuttal').val()
+    });
     return o;
 }
 
@@ -504,11 +522,14 @@ DNodeView.prototype.animeStart = function(a) {
         fontSize: Math.floor(FONT_SIZE * scale)
     });
 
+    var cls = $(this.svg).attr('class');
     if (this.viewer.selectedNode == this) {
-        $(this.svg).attr('class', $(this.svg).attr('class') + ' dnode-focused');
+        if(cls.indexOf('dnode-focused') < 0) {
+            $(this.svg).attr('class', cls + ' dnode-focused');
+        }
     }
     else {
-        $(this.svg).attr('class', $(this.svg).attr('class').replace(' dnode-focused', ''));
+        $(this.svg).attr('class', cls.replace(/ dnode-focused/g, ''));
     }
     if (scale < MIN_DISP_SCALE) {
         a.show(this.divText, false);

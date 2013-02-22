@@ -6,7 +6,7 @@
 <title>D-CASE VIEWER</title>
 <link rel="stylesheet" type="text/css" href="lib/codemirror.css"/>
 <link rel="stylesheet" type="text/css" href="lib/bootstrap.icons.css"/>
-<link rel="stylesheet" type="text/css" href="lib/colorPicker.css"/>
+<link rel="stylesheet" type="text/css" href="lib/jquery.colorPicker.css"/>
 <link rel="stylesheet" type="text/css" href="css/dcase-node.css"/>
 <link rel="stylesheet" type="text/css" href="css/viewer.css"/>
 <link rel="stylesheet" type="text/css" href="css/sidemenu.css"/>
@@ -32,6 +32,7 @@ body {
 <script type="text/javascript" src="lib/jquery.svg.min.js"></script>
 <script type="text/javascript" src="lib/jquery.svganim.min.js"></script>
 <script type="text/javascript" src="lib/jquery.colorPicker.min.js"></script>
+<script type="text/javascript" src="lib/jquery.draggable.min.js"></script>
 <script type="text/javascript" src="lib/codemirror.js"></script>
 <script type="text/javascript" src="lib/storyjs-embed.js"></script>
 <script type="text/javascript" src="lib/bootstrap.min.js"></script>
@@ -158,23 +159,27 @@ window.addEventListener("load",function() {
 	<div id="menu-color" class="menu-box">
 		<form action="#" method="post">
 			<div class="controlset">
-				<fieldset>
-					<legend>Default</legend>
-					<input class="colorpicker" id="color-goal" type="text"
-					name="color-goal" value="#000000" />
-					<input class="colorpicker" id="color-strategy" type="text"
-					name="color-strategy" value="#222222" />
-					<input class="colorpicker" id="color-context" type="text"
-					name="color-context" value="#444444" />
-					<input class="colorpicker" id="color-evidence" type="text"
-					name="color-evidence" value="#666666" />
-					<input class="colorpicker" id="color-subject" type="text"
-					name="color-subject" value="#888888" />
-					<input class="colorpicker" id="color-solution" type="text"
-					name="color-solution" value="#AAAAAA" />
-					<input class="colorpicker" id="color-rebuttal" type="text"
-					name="color-rebuttal" value="#CCCCCC" />
-				</fieldset>
+			<legend>Color Theme</legend>
+			<select id="theme-option">
+				<option value="eeeeee,dddddd,cccccc,bbbbbb,aaaaaa,999999,888888">Default</option>
+				<option value="b4d8df,dbf5f3,dbf5f3,b4d8df,dbf5f3,dbf5f3,cccccc">Tiffany Blue</option>
+			</select>
+			<fieldset id="colorset">
+				<input class="colorpicker color-goal" type="text"
+				name="dnode-goal" value="#eeeeee"/>
+				<input class="colorpicker color-strategy" type=text"
+				name="dnode-strategy" value="#dddddd"/>
+				<input class="colorpicker color-context" type=text"
+				name="dnode-context" value="#cccccc"/>
+				<input class="colorpicker color-evidence" type=text"
+				name="dnode-evidence" value="#bbbbbb"/>
+				<input class="colorpicker color-subject" type=text"
+				name="dnode-subject" value="#aaaaaa"/>
+				<input class="colorpicker color-solution" type=text"
+				name="dnode-solution" value="#999999"/>
+				<input class="colorpicker color-rebuttal" type=text"
+				name="dnode-rebuttal" value="#888888"/>
+			</fieldset>
 			</div>
 		</form>
 	</div>

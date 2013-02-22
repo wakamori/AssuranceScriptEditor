@@ -255,40 +255,16 @@ var SideMenu = (function(root, viewer) {
     var $color = $('#menu-color-i').click(function() {
         self.show('#menu-color');
     }).appendTo(root);
-    $('.colorpicker').colorPicker();
-    $('#color-goal').change(function() {
-        $($('.dnode-goal'), viewer.svgroot).css({
+    $('input.colorpicker').colorPicker().change(function() {
+        $($('.' + $(this).attr('name')), viewer.svgroot).css({
             fill: $(this).val()
         });
     });
-    $('#color-strategy').change(function() {
-        $($('.dnode-strategy'), viewer.svgroot).css({
-            fill: $(this).val()
-        });
-    });
-    $('#color-context').change(function() {
-        $($('.dnode-context'), viewer.svgroot).css({
-            fill: $(this).val()
-        });
-    });
-    $('#color-evidence').change(function() {
-        $($('.dnode-evidence'), viewer.svgroot).css({
-            fill: $(this).val()
-        });
-    });
-    $('#color-subject').change(function() {
-        $($('.dnode-subject'), viewer.svgroot).css({
-            fill: $(this).val()
-        });
-    });
-    $('#color-solution').change(function() {
-        $($('.dnode-solution'), viewer.svgroot).css({
-            fill: $(this).val()
-        });
-    });
-    $('#color-rebuttal').change(function() {
-        $($('.dnode-rebuttal'), viewer.svgroot).css({
-            fill: $(this).val()
+    $('#theme-option').change(function() {
+        var arr = $(this).find('option:selected').val().split(',');
+        $('#colorset input').each(function(i) {
+            $(this).val('#' + arr[i]);
+            $(this).change();
         });
     });
 });
