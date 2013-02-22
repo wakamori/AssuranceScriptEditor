@@ -1,14 +1,28 @@
 #ase_logo {
+	position: absolute;
 	padding-top: 5px;
+	left: 250px;
 }
 
 .menu-i {
 	position: absolute;
 	left: 24px;
-	top : 60px;
+	top : 15px;
 	width : 40px;
 	height: 40px;
 	background: #CCC;
+	opacity: 0.8;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.menu-i-undeveloped {
+	position: absolute;
+	left: 24px;
+	top : 15px;
+	width : 40px;
+	height: 40px;
+	background: #EFEFEF;
 	opacity: 0.8;
 	border-radius: 4px;
 	text-align: center;
@@ -19,8 +33,14 @@
 	top : 4px;
 }
 
+.menu-i-undeveloped i{
+	position: relative;
+	top : 4px;
+	opacity: 0.5
+}
+
 #menu-search input {
-	margin-left: 15px;
+	margin-left: 5px;
 }
 
 .menu-i:hover {
@@ -31,7 +51,7 @@
 	position: absolute;
 	display: none;
 	left: 0px;
-	top: 100px;
+	top: 55px;
 	width: 232px;
 	bottom: 0px;
 	background: #EEE;
