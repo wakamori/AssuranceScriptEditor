@@ -188,7 +188,7 @@ var DCaseViewer = (function() {
         createStoryJS({
             type    : "timeline",
             width   : '100%',
-            height  : '15%',
+            height  : '240',
             source  : { timeline: timeline },
             embed_id: dom_id,
             css     : 'lib/timeline.css',
@@ -371,7 +371,38 @@ function ViewerInit(body, DCase_Viewer) {
     $('#timeline').css({
         position: 'absolute',
         bottom: '0px',
-        margin: '0px'
+        margin: '0px',
+        border: '1px solid #CCCCCC'
+    });
+    $('#timeline-control').click(function() {
+        console.log('clicked');
     });
     DCase_Viewer.createTimeline('timeline');
+    $('#timeline-control').css({
+        position: 'absolute',
+        right: '20px',
+        width: '15px',
+        height: '20px',
+        bottom: '240px',
+        margin: '0px',
+        border: '1px solid',
+        'padding-left': '5px',
+        'line-height': '20px',
+        'background-color': '#CCCCCC'
+    });
+    var clicked = false;
+    $('#timeline-control').click(function() {
+        $('#timeline').animate({
+            height: 'toggle'
+        }, 'slow');
+        if(clicked) {
+            $(this).css({bottom: '240px'});
+            $(this).html("&darr;");
+        }
+        else {
+            $(this).css({bottom: '0px'});
+            $(this).html("&uarr;");
+            clicked = true;
+        }
+    });
 }
