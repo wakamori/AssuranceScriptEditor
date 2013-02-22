@@ -129,21 +129,20 @@ var SideMenu = (function(root, viewer) {
 
     this.showSearchResult = function(result) {
         var $field = $('#menu-search ul');
+        $field.addClass('unstyled');
         $field.empty();
         for (var i = 0; i < result.NodeIdList.length; i++) {
             var r = DCaseAPI.call('getNode', {NodeId: result.NodeIdList[i]});
             showResult($field, r);
         }
         function showResult($field, result) {
-            $('<ul>')
-                    .addClass('sidemenu-result')
-                    .html('<li>' + result.Node.Description + '</li>')
-                    //.html('<li>' + name + '<ul>' + desc + '</ul></li>')
-                    .click(function() {
-                        initViewer(result.Node.BelongedArgumentId);
-                        //viewer.centerize(v, 500);
-                    })
-                    .appendTo($field);
+            $('<li>' + result.Node.Description + '</li>')
+                .addClass('sidemenu-result')
+                .click(function() {
+                    initViewer(result.Node.BelongedArgumentId);
+                    //viewer.centerize(v, 500);
+                })
+                .appendTo($field);
         };
     };
 
