@@ -123,12 +123,8 @@ window.addEventListener("load",function() {
 		<i class="icon-search"></i>
 	</div>
 	<div id="menu-search" class="menu-box">
-		<form>
-			<fieldset>
-				<label>Search Query</label>
-				<input type="text" placeholder="Query String"></input>
-			</fieldset>
-		</form>
+		<p>search query</p>
+		<input type="text"></input>
 		<ul style="list-style-type: none; overflow: auto;"></ul>
 	</div>
 
@@ -136,40 +132,36 @@ window.addEventListener("load",function() {
 		<i class="icon-download"></i>
 	</div>
 	<div id="menu-export" class="menu-box">
-		<p><button id="menu-export-json"    class="btn" type="button">Export Json   </button></p>
-		<p><button id="menu-export-png"     class="btn" type="button">Export Png    </button></p>
-		<p><button id="menu-export-dscript" class="btn" type="button">Export Dscript</button></p>
+		<input id="menu-export-json" type="button" value="export json"></input>
+		<input id="menu-export-png"  type="button" value="export png"></input>
+		<input id="menu-export-dscript"  type="button" value="export dscript"></input>
 	</div>
 
 	<div id="menu-create-i" class="menu-i" style="left: 80px;">
 		<i class="icon-plus"></i>
 	</div>
 	<div id="menu-create" class="menu-box">
-	<form>
-	<fieldset>
 <?php
 	if (empty($_SESSION['user'])) {
-		echo('<label>committer name</label>');
-		echo('<input id="argument_committer" type="text" placeholder="Username">');
+		echo('<p>committer name</p>');
+		echo('<input id="argument_committer"></input>');
 	} else {
 		$img  = h($_SESSION['user']['twitter_profile_image_url']);
 		$name = h($_SESSION['user']['twitter_screen_name']);
-		echo ('<label><img width="16" height="16" src="'.$img.'" />'.$name.'</label>');
+		echo ('<p><img width="16" height="16" src="'.$img.'" />'.$name.'</p>');
 		echo('<input id="argument_committer" type="hidden" value="'.$name.'"></input>');
 	}
 ?>
-		<label>descriptions</label>
-		<textarea id="argument_description" cols=20 rows=4 placeholder="Enter new Argument descriptions."></textarea>
-		<button id="menu-create-argument" class="btn">Create</button>
-	</fieldset>
-	</form>
+		<p>descriptions</p>
+		<textarea id="argument_description" cols=20 rows=4>Enter new Argument descriptions.  </textarea>
+		<button id="menu-create-argument">Create</button>
 	</div>
 
 	<div id="menu-tool-i" class="menu-i" style="left: 120px;">
 		<i class="icon-list"></i>
 	</div>
 	<div id="menu-tool" class="menu-box">
-		<button id="menu-tool-commit" class="btn" type="button">Commit</button>
+		<input id="menu-tool-commit" type="button" value="commit"></input>
 	</div>
 
 	<div id="menu-tool-i" class="menu-i" style="left: 160px;">
