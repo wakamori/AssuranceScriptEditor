@@ -376,10 +376,8 @@ function ViewerInit(body, DCase_Viewer) {
         position: 'absolute',
         bottom: '0px',
         margin: '0px',
-        border: '1px solid #CCCCCC'
-    });
-    $('#timeline-control').click(function() {
-        console.log('clicked');
+        border: '1px solid #CCCCCC',
+        visibility: 'hidden'
     });
     DCase_Viewer.createTimeline('timeline');
     $('#timeline-control').css({
@@ -387,7 +385,7 @@ function ViewerInit(body, DCase_Viewer) {
         right: '20px',
         width: '16px',
         height: '20px',
-        bottom: '240px',
+        bottom: '0px',
         margin: '0px',
         border: '2px solid',
         'padding-left': '4px',
@@ -402,6 +400,9 @@ function ViewerInit(body, DCase_Viewer) {
         }, {
             duration: 'slow',
             complete: function() {
+                if($('#timeline').css('visibility') == 'hidden') {
+                    $('#timeline').css('visibility', 'visible');
+                }
                 if(clicked) {
                     $('#timeline-control').css({bottom: '240px'});
                     $('#timeline-control').html("▼");
@@ -415,4 +416,5 @@ function ViewerInit(body, DCase_Viewer) {
             }
         });
     });
+    $('#timeline-control').trigger('click');
 }
