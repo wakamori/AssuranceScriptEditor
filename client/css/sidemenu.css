@@ -14,6 +14,11 @@
 	text-align: center;
 }
 
+.menu-i i{
+	position: relative;
+	top : 4px;
+}
+
 #menu-search input {
 	margin-left: 15px;
 }

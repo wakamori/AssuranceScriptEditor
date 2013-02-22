@@ -194,6 +194,10 @@ var DCaseViewer = (function() {
             css     : 'lib/timeline.css',
             js      : 'lib/timeline.js'
         });
+        setTimeout(function() {
+            $('.nav-previous').css('display', 'none');
+            $('.nav-next').css('display', 'none');
+        }, 100)
     };
 
     DCaseViewer.prototype.showToolbox = function(node) {
