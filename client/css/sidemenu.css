@@ -2,6 +2,7 @@
 	position: absolute;
 	padding-top: 5px;
 	left: 250px;
+	z-index: 300;
 }
 
 .menu-i {
