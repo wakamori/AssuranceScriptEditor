@@ -165,7 +165,7 @@ window.addEventListener("load",function() {
 		<button id="menu-create-argument">Create</button>
 	</div>
 
-	<div id="menu-tool-i" class="menu-i" style="left: 160px;">
+	<div id="menu-tool-i" class="menu-i-undeveloped" style="left: 160px;">
 		<i class="icon-print"></i>
 	</div>
 	<div id="menu-color-i" class="menu-i" style="left: 200px;">
