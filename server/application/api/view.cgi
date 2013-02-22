@@ -175,18 +175,18 @@ class DScriptExporter extends Exporter {
         String indent = "";
 
         if(IsEvidence(root)) {
-            String evidence = root.getString("Description");
+            String evidence = root.getString("Description").replace("\n", "").replace("\r", "");
             indent = EmitIndent(level);
             stdout.print(indent + evidence + "\n");
             return;
         }
         else if(IsGoal(root)) {
             indent = EmitIndent(level);
-            stdout.print(indent + "assure " + root.get("Description") + " {\n");
+            stdout.print(indent + "assure " + root.get("Description").replace("\n", "").replace("\r", "") + " {\n");
         }
         else if(IsStrategy(root)) {
             indent = EmitIndent(level);
-            stdout.print(indent + "strategy " + root.get("Description") + " {\n");
+            stdout.print(indent + "strategy " + root.get("Description").replace("\n", "").replace("\r", "") + " {\n");
         }
         else if(IsContext(root)) {
             return;
@@ -208,7 +208,7 @@ class DScriptExporter extends Exporter {
 
         String indent = EmitIndent(0);
         Json RootNode = FindById(NodeList,RootId);
-        stdout.print("argue " + RootNode.getString("Description") + " {\n");
+        stdout.print("argue " + RootNode.getString("Description").replace("\n", "").replace("\r", "") + " {\n");
         Json child = RootNode.get("Children");
         len = child.getSize();
         for (i=0; i < len; i = i + 1) {
