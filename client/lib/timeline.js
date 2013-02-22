@@ -5429,11 +5429,12 @@ if(typeof VMM != 'undefined' && typeof VMM.Slider == 'undefined') {
 				
 				slides[i].layout(is_skinny);
 				
-				if (slides[i].content_height() > config.slider.height + 20) {
-					slides[i].css("display", "block");
-				} else {
-					slides[i].css("display", "table");
-				}
+				slides[i].css("display", "none");
+				//if (slides[i].content_height() > config.slider.height + 20) {
+				//	slides[i].css("display", "block");
+				//} else {
+				//	slides[i].css("display", "table");
+				//}
 			}
 			
 		}
@@ -6559,7 +6560,8 @@ Utf8.decode = function(strUtf) {
 
         $tip
           .remove()
-          .css({ top: 0, left: 0, display: 'block' })
+          .css({ top: 0, left: 0, display: 'none' })
+          //.css({ top: 0, left: 0, display: 'block' })
           .appendTo(inside ? this.$element : document.body)
 
         pos = this.getPosition(inside)
@@ -7797,6 +7799,8 @@ if(typeof VMM.Timeline != 'undefined' && typeof VMM.Timeline.TimeNav == 'undefin
 			goToMarker(e.data.number);
 			upDate();
 			DCase_Viewer.setSnapshot(e.data.number);
+            $('.nav-previous').css('display', 'none');
+            $('.nav-next').css('display', 'none');
 		};
 		
 		function onMarkerHover(e) {
