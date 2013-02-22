@@ -188,7 +188,7 @@ var DCaseViewer = (function() {
         createStoryJS({
             type    : "timeline",
             width   : '100%',
-            height  : '240',
+            height  : '15%',
             source  : { timeline: timeline },
             embed_id: dom_id,
             css     : 'lib/timeline.css',
