@@ -385,7 +385,8 @@ function ViewerInit(body, DCase_Viewer) {
         right: '20px',
         width: '16px',
         height: '20px',
-        bottom: '0px',
+        bottom: '240px',
+        visibility: 'hidden',
         margin: '0px',
         border: '2px solid',
         'padding-left': '4px',
@@ -393,7 +394,6 @@ function ViewerInit(body, DCase_Viewer) {
         'font-weight': 'bold',
         'background-color': '#CCCCCC'
     });
-    var clicked = false;
     $('#timeline-control').click(function() {
         $('#timeline').animate({
             height: 'toggle'
@@ -402,16 +402,15 @@ function ViewerInit(body, DCase_Viewer) {
             complete: function() {
                 if($('#timeline').css('visibility') == 'hidden') {
                     $('#timeline').css('visibility', 'visible');
+                    $('#timeline-control').css('visibility', 'visible');
                 }
-                if(clicked) {
+                if($('#timeline-control').css('bottom') == '0px') {
                     $('#timeline-control').css({bottom: '240px'});
-                    $('#timeline-control').html("▼");
-                    clicked = false;
+                    $('#timeline-control').text("▼");
                 }
                 else {
                     $('#timeline-control').css({bottom: '0px'});
-                    $('#timeline-control').html("▲");
-                    clicked = true;
+                    $('#timeline-control').text("▲");
                 }
             }
         });

@@ -159,6 +159,9 @@ function initViewer(id) {
     console.log(node);
     DCase_Viewer.opts = opts;
     DCase_Viewer.setModel(node);
+    $('#timeline').css('visibility', 'hidden');
+    $('#timeline-control').css('visibility', 'hidden');
     DCase_Viewer.createTimeline('timeline');
+    $('#timeline-control').trigger('click');
     console.log(DCase_Viewer.rootview);
 }
