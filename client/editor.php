@@ -11,6 +11,9 @@ session_start();
 <title>D-CASE VIEWER</title>
 <link rel="stylesheet" type="text/css" href="lib/codemirror.css"/>
 <link rel="stylesheet" type="text/css" href="lib/bootstrap.icons.css"/>
+<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="lib/bootstrap-responsive.min.css"/>
+<link rel="stylesheet" type="text/css" href="lib/bootstrap.icons.css"/>
 <link rel="stylesheet" type="text/css" href="lib/colorPicker.css"/>
 <link rel="stylesheet" type="text/css" href="css/dcase-node.css"/>
 <link rel="stylesheet" type="text/css" href="css/viewer.css"/>
@@ -37,6 +40,7 @@ body {
 <script type="text/javascript" src="lib/jquery.colorPicker.min.js"></script>
 <script type="text/javascript" src="lib/codemirror.js"></script>
 <script type="text/javascript" src="lib/storyjs-embed.js"></script>
+<script type="text/javascript" src="lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="js/dcaseviewer.js"></script>
 <script type="text/javascript" src="js/dnode.js"></script>
