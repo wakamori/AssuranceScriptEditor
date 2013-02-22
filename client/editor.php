@@ -99,6 +99,7 @@ window.addEventListener("load",function() {
 </defs>
 </svg>
 
+<img id="ase_logo" src="img/assuranceDS.png">
 <div id="viewer"></div>
 <div id="timeline"></div>
 
