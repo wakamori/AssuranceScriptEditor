@@ -385,28 +385,34 @@ function ViewerInit(body, DCase_Viewer) {
     $('#timeline-control').css({
         position: 'absolute',
         right: '20px',
-        width: '15px',
+        width: '16px',
         height: '20px',
         bottom: '240px',
         margin: '0px',
-        border: '1px solid',
-        'padding-left': '5px',
+        border: '2px solid',
+        'padding-left': '4px',
         'line-height': '20px',
+        'font-weight': 'bold',
         'background-color': '#CCCCCC'
     });
     var clicked = false;
     $('#timeline-control').click(function() {
         $('#timeline').animate({
             height: 'toggle'
-        }, 'slow');
-        if(clicked) {
-            $(this).css({bottom: '240px'});
-            $(this).html("&darr;");
-        }
-        else {
-            $(this).css({bottom: '0px'});
-            $(this).html("&uarr;");
-            clicked = true;
-        }
+        }, {
+            duration: 'slow',
+            complete: function() {
+                if(clicked) {
+                    $('#timeline-control').css({bottom: '240px'});
+                    $('#timeline-control').html("▼");
+                    clicked = false;
+                }
+                else {
+                    $('#timeline-control').css({bottom: '0px'});
+                    $('#timeline-control').html("▲");
+                    clicked = true;
+                }
+            }
+        });
     });
 }
