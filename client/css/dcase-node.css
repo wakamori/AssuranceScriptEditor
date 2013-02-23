@@ -42,12 +42,7 @@
 // -------------
 // dnode style
 
-polygon.dnode-subject {
-	fill: #b4d8df;
-}
-
-polygon.dnode-solution {
-	fill: #b4d8df;
+.dnode {
 }
 
 .dnode-argument {

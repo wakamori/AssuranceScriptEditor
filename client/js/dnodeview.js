@@ -253,7 +253,9 @@ function CreateSubject(Viewer, root) {
     $(o1).attr('class', 'dnode dnode-subject').css({
         fill: $('input.color-subject').val()
     });
-    $(o2).attr('class', 'dnode dnode-subject');
+    $(o2).attr('class', 'dnode dnode-polygon').css({
+        fill: $('input.color-polygon').val()
+    });
     return o;
 }
 function CreateSolution(Viewer, root) {
@@ -288,7 +290,9 @@ function CreateSolution(Viewer, root) {
     $(o1).attr('class', 'dnode dnode-solution').css({
         fill: $('input.color-solution').val()
     });
-    $(o2).attr('class', 'dnode dnode-solution');
+    $(o2).attr('class', 'dnode dnode-polygon').css({
+        fill: $('input.color-polygon').val()
+    });;
     return o;
 }
 
