@@ -337,6 +337,76 @@ var DCaseViewer = (function() {
             t.remove();
         }));
     };
+
+    DCaseViewer.prototype.updateNodeColor = function(nodename, color) {
+        function min3(a,b,c) { return (a<b)?((a<c)?a:c):((b<c)?b:c); }
+        function max3(a,b,c) { return (a>b)?((a>c)?a:c):((b>c)?b:c); }
+        function RGB2HSV(rgb) {
+            hsv = new Object();
+            max=max3(rgb.r,rgb.g,rgb.b);
+            dif=max-min3(rgb.r,rgb.g,rgb.b);
+            hsv.saturation=(max==0.0)?0:(100*dif/max);
+            if (hsv.saturation==0) hsv.hue=0;
+            else if (rgb.r==max) hsv.hue=60.0*(rgb.g-rgb.b)/dif;
+            else if (rgb.g==max) hsv.hue=120.0+60.0*(rgb.b-rgb.r)/dif;
+            else if (rgb.b==max) hsv.hue=240.0+60.0*(rgb.r-rgb.g)/dif;
+            if (hsv.hue<0.0) hsv.hue+=360.0;
+            hsv.value=Math.round(max*100/255);
+            hsv.hue=Math.round(hsv.hue);
+            hsv.saturation=Math.round(hsv.saturation);
+            return hsv;
+        }
+        function hexToRgb(hex) {
+            var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+                return r + r + g + g + b + b;
+            });
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+            } : null;
+        }
+        function getSuitableTextColor(hex) {
+            console.log(hex);
+            var rgb = hexToRgb(hex);
+            console.log(rgb);
+            var hsv = RGB2HSV(rgb);
+            console.log(hsv);
+            if(hsv.value >= 70) {
+                return '#000000';
+            }
+            else {
+                return '#ffffff';
+            }
+        }
+        function getNodeColorByType(type) {
+            switch(type) {
+                case 'Goal':
+                    return $('#color-goal').val();
+                case 'Strategy':
+                    return $('#color-strategy').val();
+                case 'Context':
+                    return $('#color-context').val();
+                case 'Evidence':
+                    return $('#color-evidence').val();
+                case 'Subject':
+                    return $('#color-subject').val();
+                case 'Solution':
+                    return $('#color-solution').val();
+                case 'Rebuttal':
+                    return $('#color-rebuttal').val();
+            }
+            console.log('unknown type ' + type);
+            return undefined;
+        }
+        $($('.' + nodename), this.svgroot).css({fill: color});
+        $('div.node-name,div.node-text').each(function() {
+            $(this).css({color: getSuitableTextColor(getNodeColorByType($(this).attr('type')))});
+        });
+    };
+
     return DCaseViewer;
 })();
 

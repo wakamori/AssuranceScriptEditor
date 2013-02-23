@@ -256,9 +256,7 @@ var SideMenu = (function(root, viewer) {
         self.show('#menu-color');
     }).appendTo(root);
     $('input.colorpicker').colorPicker().change(function() {
-        $($('.' + $(this).attr('name')), viewer.svgroot).css({
-            fill: $(this).val()
-        });
+        viewer.updateNodeColor($(this).attr('name'), $(this).val());
     });
     $('#theme-option').change(function() {
         var arr = $(this).find('option:selected').val().split(',');

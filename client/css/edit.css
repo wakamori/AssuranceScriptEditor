@@ -19,8 +19,8 @@ textarea.editor {
 	left: 0;
 	width: 400px;
 	height: 300px;
-	background: #dbf5f3;
-	border-style: none;
+	background: #FFFFFF;
+	border: 1px solid;
 	resizable: false;
 	z-index: 99;
 }

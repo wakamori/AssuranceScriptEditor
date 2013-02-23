@@ -37,10 +37,10 @@ var DNodeView = function(viewer, node) {
     }
     this.argumentBounds = {};
 
-    this.divName = $('<div></div>').addClass('node-name').html(node.name);
+    this.divName = $('<div></div>').addClass('node-name').attr('type', node.type).html(node.name);
     this.div.append(this.divName);
 
-    this.divText = $('<div></div>').addClass('node-text').html(toHTML(node.text));
+    this.divText = $('<div></div>').addClass('node-text').attr('type', node.type).html(toHTML(node.text));
     this.div.append(this.divText);
 
     this.divNodes = $('<div></div>').addClass('node-closednodes');
@@ -173,7 +173,7 @@ function CreateGoal(Viewer, root) {
     };
     o.offset = { x: n, y: n };
     $(o).attr('class', 'dnode dnode-goal').css({
-        fill: $('input.color-goal').val()
+        fill: $('#color-goal').val()
     });
     return o;
 }
@@ -196,7 +196,7 @@ function CreateContext(Viewer, root) {
     o.offset = { x: n / 2, y: n / 2 };
 
     $(o).attr('class', 'dnode dnode-context').css({
-        fill: $('input.color-context').val()
+        fill: $('#color-context').val()
     });
     return o;
 }
@@ -216,7 +216,7 @@ function CreateStrategy(Viewer, root) {
     };
     o.offset = { x: 25, y: 10 };
     $(o).attr('class', 'dnode dnode-strategy').css({
-        fill: $('input.color-strategy').val()
+        fill: $('#color-strategy').val()
     });
     return o;
 }
@@ -248,10 +248,10 @@ function CreateSubject(Viewer, root) {
     };
     o.offset = { x: 1, y: 1 };
     $(o).attr('class', 'dnode dnode-subject').css({
-        fill: $('input.color-subject').val()
+        fill: $('#color-subject').val()
     });
     $(o1).attr('class', 'dnode dnode-subject').css({
-        fill: $('input.color-subject').val()
+        fill: $('#color-subject').val()
     });
     $(o2).attr('class', 'dnode dnode-polygon').css({
         fill: $('input.color-polygon').val()
@@ -285,10 +285,10 @@ function CreateSolution(Viewer, root) {
     o.offset = { x: 200 / 6, y: 200 / 6 };
 
     $(o).attr('class', 'dnode dnode-solution').css({
-        fill: $('input.color-solution').val()
+        fill: $('#color-solution').val()
     });
     $(o1).attr('class', 'dnode dnode-solution').css({
-        fill: $('input.color-solution').val()
+        fill: $('#color-solution').val()
     });
     $(o2).attr('class', 'dnode dnode-polygon').css({
         fill: $('input.color-polygon').val()
@@ -312,7 +312,7 @@ function CreateEvidence(Viewer, root) {
     };
     o.offset = { x: 0, y: 0 };
     $(o).attr('class', 'dnode dnode-evidence').css({
-        fill: $('input.color-evidence').val()
+        fill: $('#color-evidence').val()
     });
     return o;
 }
@@ -333,7 +333,7 @@ function CreateRebuttal(Viewer, root) {
     };
     o.offset = { x: 0, y: 0 };
     $(o).attr('class', 'dnode dnode-rebuttal').css({
-        fill: $('input.color-rebuttal').val()
+        fill: $('#color-rebuttal').val()
     });
     return o;
 }
