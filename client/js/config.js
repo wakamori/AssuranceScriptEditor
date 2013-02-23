@@ -1,4 +1,4 @@
 var CONFIG = {
-    cgi_url: 'http://localhost/~chen_ji/AssuranceScriptEditor/server/application/api/api.cgi',
-    view_cgi: 'http://localhost/~chen_ji/AssuranceScriptEditor/server/application/api/view.cgi'
+    cgi_url: 'http://www.ubicg.ynu.ac.jp/dcase_viewer/cgi/api.cgi',
+    view_cgi: 'http://www.ubicg.ynu.ac.jp/dcase_viewer/cgi/view.cgi'
 };
