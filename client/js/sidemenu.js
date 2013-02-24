@@ -118,12 +118,19 @@ var SideMenu = (function(root, viewer) {
     $('#menu-search input').keydown(function(e) {
         if (e.keyCode == 13) { // Enter key
             if (this.value == "") return;
-            var i = this;
             var r = DCaseAPI.search({
-                SearchText: i.value
+                SearchText: this.value
             });
             self.showSearchResult(r);
         }
+    });
+    $('#search-button').click(function(e) {
+       var value = $('#menu-search input').val();
+       if (value == "") return;
+       var r = DCaseAPI.search({
+           SearchText: value
+       });
+       self.showSearchResult(r);
     });
 
     this.showSearchResult = function(result) {
