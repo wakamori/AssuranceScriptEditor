@@ -42,6 +42,7 @@ body {
 <script type="text/javascript" src="lib/codemirror.js"></script>
 <script type="text/javascript" src="lib/storyjs-embed.js"></script>
 <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/spin.min.js"></script>
 <script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="js/dcaseviewer.js"></script>
 <script type="text/javascript" src="js/dnode.js"></script>
@@ -125,7 +126,11 @@ window.addEventListener("load",function() {
 	</div>
 	<div id="menu-search" class="menu-box">
 		<p>D-Caseを探す</p>
-		<input type="text"></input>
+		<div class="input-append">
+			<i class="icon-search"></i>
+			<input type="text" class="span search-query">
+			<button id="search-button" type="submit" class="btn">Search</button>
+		</div>
 		<ul style="list-style-type: none; overflow: auto;"></ul>
 	</div>
 

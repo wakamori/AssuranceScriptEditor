@@ -4,6 +4,7 @@ var SideMenu = (function(root, viewer) {
     var self = this;
 
     //--------------------------------------------------------
+
     this.actChangeLock = function() {
         var flag = !viewer.getDragLock();
         viewer.setDragLock(flag);
@@ -88,7 +89,7 @@ var SideMenu = (function(root, viewer) {
         var msg = prompt('コミットメッセージを入力して下さい');
         if (msg != null) {
             console.log(viewer.model);
-            DCaseAPI.commit(msg,viewer.opts.argument_id);
+            DCaseAPI.commit(msg, viewer.opts.argument_id);
         }
     };
 
@@ -114,11 +115,9 @@ var SideMenu = (function(root, viewer) {
             })
             .appendTo(root);
 
-    $('#menu-search input').blur(function(e) {
-        clearInterval(this.interval_id);
-        delete this.interval_id;
-    }).keydown(function(e) {
+    $('#menu-search input').keydown(function(e) {
         if (e.keyCode == 13) { // Enter key
+            if (this.value == "") return;
             var i = this;
             var r = DCaseAPI.search({
                 SearchText: i.value
@@ -129,12 +128,19 @@ var SideMenu = (function(root, viewer) {
 
     this.showSearchResult = function(result) {
         var $field = $('#menu-search ul');
+        var $icon = $('#menu-search .input-append i');
+        $icon.hide();
+        $('#menu-search .input-append i').hide();
+        var spin = new DCaseSpinner($('#menu-search .input-append'));
+        spin.start({top: -14, left: 15});
         $field.addClass('unstyled');
         $field.empty();
         for (var i = 0; i < result.NodeIdList.length; i++) {
             var r = DCaseAPI.call('getNode', {NodeId: result.NodeIdList[i]});
             // vvv FIXME it is adhock
-            var res1 = DCaseAPI.call("getNodeTree", {BelongedArgumentId: r.Node.BelongedArgumentId});
+            var res1 = DCaseAPI.call("getNodeTree", {
+                BelongedArgumentId: r.Node.BelongedArgumentId
+            });
             try {
                 var node = createNodeFromJson(res1);
                 showResult($field, r);
@@ -155,51 +161,12 @@ var SideMenu = (function(root, viewer) {
                 })
                 .appendTo($field);
         };
+        spin.stop();
+        $icon.show();
+        if ($field.children().length <= 0) {
+            $('<li>一致するノードが見つかりませんでした</li>').appendTo($field);
+        }
     };
-
-    //this.search = function(text) {
-    //    var $res = $('#menu-search ul');
-    //    $res.empty();
-    //    text = text.toLowerCase();
-    //    function getPreviewText(target, text) { // [TODO] add color
-    //        var index = target.toLowerCase().indexOf(text);
-    //        var ret = target.substr(0, index) +
-    //            '<b>' + target.substr(index, text.length) +
-    //            '</b>' + target.substr(index + text.length)
-    //        return ret;
-    //    };
-    //    function showResult($res, v, name, desc) {
-    //        $('<ul>')
-    //                .addClass('sidemenu-result')
-    //                .html('<li>' + name + '</li>')
-    //                //.html('<li>' + name + '<ul>' + desc + '</ul></li>')
-    //                .click(function() {
-    //                    viewer.centerize(v, 500);
-    //                })
-    //                .appendTo($res);
-    //    };
-    //    function cmp(v) {
-    //        var name = v.node.name;
-    //        var desc = v.node.text;
-    //        var d_index = desc.toLowerCase().indexOf(text);
-    //        var n_index = name.toLowerCase().indexOf(text);
-    //        if (d_index != -1 || n_index != -1) {
-    //            var ptext = getPreviewText(desc, text);
-    //            showResult($res, v, name, ptext);
-    //        }
-    //        v.forEachNode(cmp);
-    //    }
-    //    cmp(viewer.rootview);
-    //}
-
-    //var prev_isesarch = '';
-    //this.search_inc = function(text) {
-    //    if (text !== prev_isesarch) {
-    //        this.search(text);
-    //    }
-    //    prev_isesarch = text;
-    //}
-
     //--------------------------------------------------------
     var $export = $('#menu-export-i')
             .click(function(e) {
@@ -266,3 +233,39 @@ var SideMenu = (function(root, viewer) {
         });
     });
 });
+
+var DCaseSpinner = (function($target) {
+    this.$target = $target;
+    this.spinner;
+    this.start = function(opts) {
+        var _opts = {
+            lines: 13, // The number of lines to draw
+            length: 4, // The length of each line
+            width: 2, // The line thickness
+            radius: 4, // The radius of the inner circle
+            rotate: 0, // The rotation offset
+            color: '#000', // #rgb or #rrggbb
+            speed: 0.9, // Rounds per second
+            trail: 69, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: 'auto', // Top position relative to parent in px
+            left: 'auto' // Left position relative to parent in px
+        };
+        if (this.$target.children('.spinner').length == 0) {
+            this.spinner = new Spinner(_opts).spin();
+            this.$target.append(this.spinner.el);
+            if (opts != undefined) {
+                for (i in opts) {
+                    this.$target.children('.spinner').css(opts);
+                }
+            }
+        }
+    }
+    this.stop = function() {
+        this.spinner.stop();
+    }
+});
+
