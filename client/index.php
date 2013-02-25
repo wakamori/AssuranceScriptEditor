@@ -182,26 +182,24 @@ window.addEventListener("load",function() {
 			<div class="controlset">
 			<legend>Color Theme</legend>
 			<select id="theme-option">
-				<option value="eeeeee,dddddd,cccccc,bbbbbb,aaaaaa,999999,888888,777777">Monochrome</option>
-				<option value="b4d8df,dbf5f3,dbf5f3,b4d8df,dbf5f3,dbf5f3,cccccc,bfd8df">Tiffany Blue</option>
+				<option value="b4d8df,dbf5f3,dbf5f3,b4d8df,dbf5f3,dbf5f3,cccccc">Tiffany Blue</option>
+				<option value="eeeeee,dddddd,cccccc,bbbbbb,aaaaaa,999999,888888">Monochrome</option>
 			</select>
 			<fieldset id="colorset">
-				<input class="colorpicker color-goal" type="text"
-				name="dnode-goal" value="#b4d8df"/>
-				<input class="colorpicker color-strategy" type=text"
-				name="dnode-strategy" value="#dbf5f3"/>
-				<input class="colorpicker color-context" type=text"
-				name="dnode-context" value="#dbf5f3"/>
-				<input class="colorpicker color-evidence" type=text"
-				name="dnode-evidence" value="#b4d8df"/>
-				<input class="colorpicker color-subject" type=text"
-				name="dnode-subject" value="#dbf5f3"/>
-				<input class="colorpicker color-solution" type=text"
-				name="dnode-solution" value="#dbf5f3"/>
-				<input class="colorpicker color-rebuttal" type=text"
-				name="dnode-rebuttal" value="#cccccc"/>
-				<input class="colorpicker color-polygon" type=text"
-				name="dnode-polygon" value="#b4d8df"/>
+				<input class="colorpicker" type="text"
+				id="color-goal" name="dnode-goal" value="#b4d8df"/>
+				<input class="colorpicker" type=text"
+				id="color-strategy" name="dnode-strategy" value="#dbf5f3"/>
+				<input class="colorpicker" type=text"
+				id="color-context" name="dnode-context" value="#dbf5f3"/>
+				<input class="colorpicker" type=text"
+				id="color-evidence" name="dnode-evidence" value="#b4d8df"/>
+				<input class="colorpicker" type=text"
+				id="color-subject" name="dnode-subject" value="#dbf5f3"/>
+				<input class="colorpicker" type=text"
+				id="color-solution" name="dnode-solution" value="#dbf5f3"/>
+				<input class="colorpicker" type=text"
+				id="color-rebuttal" name="dnode-rebuttal" value="#cccccc"/>
 			</fieldset>
 			</div>
 		</form>

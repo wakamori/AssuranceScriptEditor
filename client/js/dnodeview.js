@@ -112,14 +112,14 @@ var DNodeView = function(viewer, node) {
                     DCaseAPI.update({
                       NodeType: node.type,
                       BelongedArgumentId: viewer.opts.argument_id,
-                      ThisNodeId: viewer.tmp_id,
-                      PrevNodeId: node.id,
+                      ThisNodeId: viewer.tmp_id, // tmp
+                      PrevNodeId: node.id, // current
                       //ThisNodeId: node.id,
                       Description: node.text,
                       ParentNodeId: parent_node_id,
                       Children: child_node_ids
                     });
-                    node.id = viewer.tmp_id;
+                    node.id = viewer.tmp_id; // link
                     //viewer.tmp_id -= 1;
                     console.log(node);
                     self.divText.html(toHTML(node.text));
